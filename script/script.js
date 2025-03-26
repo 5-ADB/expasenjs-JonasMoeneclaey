@@ -31,7 +31,9 @@ const registreerForm = document.querySelector("#registreerForm")
 
 registreerBtn.addEventListener("click", () => {
   if (fullNameInput.value == '' || emailInput.value == '' || passwordInput.value == '') {
-  const foutMelding
+  const foutMelding = document.createElement("p")
+  foutMelding.innerText = "foutmelding"
+  registreerForm.appendChild(foutMelding)
 }
   else{
   users.push({fullname: fullNameInput.value, email: emailInput.value, password: passwordInput.value})
@@ -40,9 +42,22 @@ registreerBtn.addEventListener("click", () => {
 
 
 const lijstGebruikers = document.querySelector("#lijstGebruikers")
-const spanUsername = document.querySelector("#username")
-const spanEmail = document.querySelector("#email")
-spanUsername.innerHTML= ""
-spanEmail.innerHTML= ""
+let spanUsername = document.querySelector("#username")
+let spanEmail = document.querySelector(".email")
+spanUsername.innerText=""
+spanEmail.innerText= ""
+
+users.fullname.forEach(user => {
+  const span = document.createElement("span")
+  span.innerText = user.fullname
+  span.id = "username"
+  lijstGebruikers.appendChild(span)
+})
+users.email.forEach(user => {
+  const span = document.createElement("span")
+  span.innerText = user.email
+  span.id = "email"
+  lijstGebruikers.appendChild(span)
+})
 
 
